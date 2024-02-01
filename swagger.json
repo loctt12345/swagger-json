@@ -3,6 +3,7 @@
     "info": {
         "title": "WebApplication1",
         "version": "1.0",
+        "description": "This is a sample API for Weather Forecasts.",
         "x-logo": {
             "url": "https://redocly.github.io/redoc/petstore-logo.png",
             "backgroundColor": "#FFFFFF",
@@ -16,6 +17,7 @@
                     "WeatherForecast"
                 ],
                 "operationId": "GetWeatherForecast",
+                "description": "Get the weather forecast for a specific location.",
                 "responses": {
                     "200": {
                         "description": "Success",
