@@ -1,0 +1,511 @@
+openapi: 3.0.3
+info:
+  title: EXE201 List API
+  version: 1.0.0
+  description: API documentation for our app
+paths:
+  /api/v1/administrative-regions:
+    get:
+      operationId: v1_administrative_regions_retrieve
+      description: Get all administrative_region
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/administrative-units:
+    get:
+      operationId: v1_administrative_units_retrieve
+      description: Get all administrative_unit
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/cabinet:
+    get:
+      operationId: v1_cabinet_retrieve
+      parameters:
+      - in: query
+        name: latitude
+        schema:
+          type: number
+          format: float
+        required: true
+      - in: query
+        name: longitude
+        schema:
+          type: number
+          format: float
+        required: true
+      - in: query
+        name: page
+        schema:
+          type: integer
+          format: int32
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+          format: int32
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/cabinet/{cabinet_id}:
+    get:
+      operationId: v1_cabinet_retrieve_2
+      description: Get all cabinet
+      parameters:
+      - in: path
+        name: cabinet_id
+        schema:
+          type: integer
+          format: int32
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/cabinet/{cabinet_id}/empty-cells:
+    get:
+      operationId: v1_cabinet_empty_cells_retrieve
+      description: Get all empty cells of a specified cabinet
+      parameters:
+      - in: path
+        name: cabinet_id
+        schema:
+          type: integer
+          format: int32
+        required: true
+      - in: query
+        name: time_end
+        schema:
+          type: string
+          format: date-time
+        required: true
+      - in: query
+        name: time_start
+        schema:
+          type: string
+          format: date-time
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/cabinet/opening:
+    post:
+      operationId: v1_cabinet_opening_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CabinetOpeningSerializerRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CabinetOpeningSerializerRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CabinetOpeningSerializerRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/district:
+    get:
+      operationId: v1_district_retrieve
+      description: Get all district
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/location/cabinet:
+    get:
+      operationId: v1_location_cabinet_retrieve
+      description: List all cabinets follow location.
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+          format: int32
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+          format: int32
+      - in: query
+        name: search_query
+        schema:
+          type: string
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/order/:
+    get:
+      operationId: v1_order_retrieve
+      parameters:
+      - in: query
+        name: page
+        schema:
+          type: integer
+          format: int32
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+          format: int32
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/order/{order_id}/:
+    get:
+      operationId: v1_order_retrieve_2
+      parameters:
+      - in: path
+        name: order_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: v1_order_update
+      parameters:
+      - in: path
+        name: order_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: v1_order_destroy
+      parameters:
+      - in: path
+        name: order_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/order/purchase:
+    post:
+      operationId: v1_order_purchase_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PurchaseRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/order/valid-time:
+    post:
+      operationId: v1_order_valid_time_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ValidOrderTimeRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/provinces:
+    get:
+      operationId: v1_provinces_retrieve
+      description: Get all province
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/:
+    patch:
+      operationId: v1_user_partial_update
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateUserInformationRequestRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/confirm-otp:
+    post:
+      operationId: v1_user_confirm_otp_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OtpConfirmRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/login:
+    post:
+      operationId: v1_user_login_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/register:
+    post:
+      operationId: v1_user_register_create
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/token/refresh:
+    post:
+      operationId: v1_user_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/v1/ward:
+    get:
+      operationId: v1_ward_retrieve
+      description: Get all ward
+      tags:
+      - v1
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  schemas:
+    CabinetOpeningSerializerRequestRequest:
+      type: object
+      properties:
+        hash_code:
+          type: string
+          minLength: 1
+          maxLength: 100
+      required:
+      - hash_code
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+      required:
+      - email
+    OtpConfirmRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        otp:
+          type: integer
+          maximum: 999999
+          minimum: 100000
+      required:
+      - email
+      - otp
+    PatchedUpdateUserInformationRequestRequest:
+      type: object
+      properties:
+        full_name:
+          type: string
+          nullable: true
+          maxLength: 200
+        phone_number:
+          type: string
+          minLength: 1
+          maxLength: 100
+        address:
+          type: string
+          nullable: true
+          maxLength: 100
+        image_link:
+          type: string
+          nullable: true
+          maxLength: 500
+    PurchaseRequestRequest:
+      type: object
+      properties:
+        hash_code:
+          type: string
+          format: uuid
+        start_date:
+          type: string
+          format: date-time
+        end_date:
+          type: string
+          format: date-time
+      required:
+      - end_date
+      - hash_code
+      - start_date
+    RegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+      required:
+      - email
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    TokenRefreshRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+          minLength: 1
+      required:
+      - refresh
+    ValidOrderTimeRequestRequest:
+      type: object
+      properties:
+        hash_code:
+          type: string
+          format: uuid
+        time_start:
+          type: string
+          format: date-time
+        time_end:
+          type: string
+          format: date-time
+      required:
+      - hash_code
+      - time_end
+      - time_start
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
