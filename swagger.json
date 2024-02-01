@@ -2,7 +2,12 @@
     "openapi": "3.0.1",
     "info": {
         "title": "WebApplication1",
-        "version": "1.0"
+        "version": "1.0",
+        "x-logo": {
+            "url": "https://redocly.github.io/redoc/petstore-logo.png",
+            "backgroundColor": "#FFFFFF",
+            "altText": "Petstore logo"
+        }
     },
     "paths": {
         "/WeatherForecast": {
